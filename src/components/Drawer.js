@@ -42,17 +42,17 @@ const menus = [
     {
       children: <QuestionAnswerOutlined />,
       label: 'Trabalhos',
-      route: '/'
+      route: '/submissoes'
     },
     {
       children: <GradeOutlined />,
       label: 'Favoritos',
-      route: '/'
+      route: '/favoritos'
     },
     {
       children: <InfoOutlined />,
       label: 'Informações',
-      route: '/'
+      route: '/infos'
     }    
   ],
   // [

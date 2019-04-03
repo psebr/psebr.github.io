@@ -36,6 +36,10 @@ const routes = [
     component: withRouter(lazy(() => import('./avaliar-trabalho')))
   },    
   {
+    path: '/infos',
+    component: withRouter(lazy(() => import('./infos')))
+  },   
+  {
     path: '/home',
     component: withRouter(lazy(() => import('./home')))
   },

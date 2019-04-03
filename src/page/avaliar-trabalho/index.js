@@ -1,27 +1,39 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useState } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Loading, QrCodeReader } from 'components'
+import Notifier, { openSnackbar } from 'components/Notifier';
 import { useTitle } from 'utils'
 
 // const Components = [lazy(() => import('./components/Bar')), lazy(() => import('./components/Map'))]
 
 const useStyles = makeStyles(theme => ({
-	card: {
-		position: 'relative',
-		height: 512,
+	container: {
 		display: 'flex',
-		justifyContent: 'center',
-		backgroundColor: (theme.palette.type === 'dark') ? '#333' : '#fff',
+		flexDirection: 'column',
+		alignItems: 'center',
 	},
+	item: {
+		flexBasis: '90%'
+	}
 }))
 
 function Inicial() {
 	const classes = useStyles()
-	useTitle('Página Inicial | PSE-2019');
+	useTitle('Avaliar Trabalho| PSE-2019');
+
+	const handleError = err => {
+		console.error(err)
+		console.error('Oi erro')
+		const result = 'Erro na identificação do dispositivo.'
+		openSnackbar({ message: result, variant: 'error'})
+	}
 
 	return (
-		<div className="">
-			<QrCodeReader></QrCodeReader>
+		<div >
+			<QrCodeReader 
+			handleError={handleError}>
+			</QrCodeReader>
+			<Notifier></Notifier>
 		</div>
 	)
 }

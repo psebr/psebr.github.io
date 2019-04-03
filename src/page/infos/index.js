@@ -24,24 +24,18 @@ const useStyles = makeStyles(theme => ({
 
 function Inicial() {
 	const classes = useStyles()
-	useTitle('Página Inicial | PSE-2019');
+	useTitle('Informações | PSE-2019');
 
 	return (
 		<div className={classes.container}>
-			<Typography variant="h3">
-				PSE 2019
-			</Typography>		
-			{/* <h1>
-				PSE 2019
-			</h1> */}
-			<h4>
-				Consulta e Avaliação de Trabalhos
-			</h4>
+			<h1>
+				Informações sobre o PSE 2019
+			</h1>
 			<Typography component="p">
-					Seja bem-vindo!
+					Fique por dentro
 			</Typography>
 			<Typography component="p">
-				Acesse o Site principal do PSE para maiores informações: http://www.ufrgs.br/psebr/
+				Acesse o Site do PSE: http://www.ufrgs.br/psebr/
 			</Typography>
 		</div>
 	)
