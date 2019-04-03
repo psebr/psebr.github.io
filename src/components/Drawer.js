@@ -5,6 +5,12 @@ import { IconButton, Divider, List, Drawer, ListItem, ListItemIcon, ListItemText
 import { makeStyles } from '@material-ui/styles'
 import classNames from 'classnames'
 import {
+  HomeOutlined,
+  ScheduleOutlined,
+  GradeOutlined,
+  InsertChartOutlined,
+  QuestionAnswerOutlined,
+  InfoOutlined,
   ChevronLeft,
   Movie,
   BarChart,
@@ -19,23 +25,43 @@ import {
 const menus = [
   [
     {
-      children: <Movie/>,
-      label: 'Documentaries',
+      children: <HomeOutlined/>,
+      label: 'Tela inicial',
       route: '/'
     },
     {
-      children: <BarChart/>,
-      label: 'Statistics',
+      children: <ScheduleOutlined/>,
+      label: 'Programação',
       route: '/statistics'
-    }
-  ],
-  [
+    },
     {
-      children: <Comment/>,
-      label: 'Comment',
-      route: '/comment'
-    }
-  ]
+      children: <InsertChartOutlined />,
+      label: 'Avaliar trabalho',
+      route: '/avaliar-trabalho'
+    },
+    {
+      children: <QuestionAnswerOutlined />,
+      label: 'Trabalhos',
+      route: '/'
+    },
+    {
+      children: <GradeOutlined />,
+      label: 'Favoritos',
+      route: '/'
+    },
+    {
+      children: <InfoOutlined />,
+      label: 'Informações',
+      route: '/'
+    }    
+  ],
+  // [
+  //   {
+  //     children: <Comment/>,
+  //     label: 'Comment',
+  //     route: '/comment'
+  //   }
+  // ]
 ]
 
 const Menus = ({menus, toggle}) => (
@@ -60,7 +86,7 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     whiteSpace: 'nowrap',
     backgroundColor: (theme.palette.type === 'dark') ? '#212121' : '#ffffff',
-    opacity: 0.85,
+    opacity: 0.95,
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,

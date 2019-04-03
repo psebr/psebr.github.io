@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom'
 import { CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
@@ -29,19 +29,27 @@ const useStyles = makeStyles(theme => ({
 const routes = [
   {
     path: '/',
-    component: lazy(() => import('./home'))
+    component: withRouter(lazy(() => import('./inicial')))
+  },  
+  {
+    path: '/avaliar-trabalho',
+    component: withRouter(lazy(() => import('./avaliar-trabalho')))
+  },    
+  {
+    path: '/home',
+    component: withRouter(lazy(() => import('./home')))
   },
   {
     path: '/statistics',
-    component: lazy(() => import('./statistics'))
+    component: withRouter(lazy(() => import('./statistics')))
   },
   {
     path: '/comment',
-    component: lazy(() => import('./comment'))
+    component: withRouter(lazy(() => import('./comment')))
   },
   {
     path: '(.*)',
-    component: lazy(() => import('./error'))
+    component: withRouter(lazy(() => import('./error')))
   },
 ]
 

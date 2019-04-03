@@ -18,7 +18,8 @@ const drawerWidth = 240
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    backgroundColor: (theme.palette.type === 'dark') ? "#1e1e1e": "#ffffff",
+    // backgroundColor: (theme.palette.type === 'dark') ? "#1e1e1e" : "#ffffff",
+    backgroundColor: (theme.palette.type === 'dark') ? "#1e1e1e": "#blue",
     opacity: 0.85,
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -37,6 +38,7 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginLeft: 12,
     marginRight: 36,
+    color: "white",
   },
   hide: {
     display: 'none',
@@ -75,7 +77,7 @@ function AppBarChild ({ toggle, setToggle}) {
           <Menu/>
         </IconButton>
 
-        <div className={classes.grow}/>
+        {/* <div className={classes.grow}/>
         <IconButton aria-label="Blog">
           <a target="_blank" aria-label="Blog" rel="noopener noreferrer" href={'https://valleyease.me'} className={classes.cardLink}>
             <InsertLink fontSize="small"/>
@@ -85,7 +87,7 @@ function AppBarChild ({ toggle, setToggle}) {
           <a target="_blank" aria-label="Github" rel="noopener noreferrer" href={'https://github.com/ValleyZw'} className={classes.cardLink}>
             <Github fontSize="small"/>
           </a>
-        </IconButton>
+        </IconButton> */}
       </Toolbar>
     </AppBar>
   )
