@@ -42,7 +42,7 @@ const menus = [
     {
       children: <QuestionAnswerOutlined />,
       label: 'Trabalhos',
-      route: '/submissoes'
+      route: '/trabalhos'
     },
     {
       children: <GradeOutlined />,
