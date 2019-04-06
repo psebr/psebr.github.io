@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles, useTheme } from '@material-ui/styles'
 import { fade } from '@material-ui/core/styles/colorManipulator'
@@ -12,6 +12,7 @@ import { Link } from '@material-ui/icons'
 import LazyLoad from 'react-lazyload'
 import ImageZoom from 'react-medium-image-zoom'
 import { GradeOutlined, InsertChartOutlined, AttachmentOutlined } from '@material-ui/icons'
+import { FavoritesContext } from '../../App';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -91,10 +92,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function handleFavoriteClick(params) {
-  console.log('Favoritado!')
-}
-
 function handleAvaliarClick(params) {
   console.log('Avaliado!')
 }
@@ -140,6 +137,17 @@ const backGroundColorsArea = {
 function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK }) {
   const theme = useTheme()
   const classes = useStyles()
+  const favoritesContext = useContext(FavoritesContext);
+  const fullObjs = { ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK }
+
+  const handleFavoriteClick = () => {
+    const favorites = favoritesContext.favorites
+    const setFavorites = favoritesContext.setFavorites
+    console.log('Start favoritando!', favoritesContext)
+    const newFavorites = [...favorites, fullObjs]
+    setFavorites(newFavorites)
+    console.log('Favoritado!', favorites)
+  }
 
   return (
     <Card className={classes.card}>

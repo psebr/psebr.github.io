@@ -1,7 +1,9 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom'
 import { CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import csvFileName from 'data/worklist.csv'
+import { dsv } from 'd3-fetch'
 
 import { Drawer, AppBar, Loading } from 'components'
 import { useToggle } from 'utils'
@@ -65,25 +67,51 @@ const routes = [
   },
 ]
 
-function App () {
+// const favoritesInitial = []
+
+export const WorksContext = React.createContext();
+export const FavoritesContext = React.createContext();
+
+function App() {
   const classes = useStyles()
   const _useToggle = useToggle()
+  const [works, setWorks] = useState(null)
+  const [favorites, setFavorites] = useState([])
+
+  useEffect(
+    () => {
+      dsv(';', csvFileName, (loadedData) => {
+        Object.keys(loadedData).map(function (key, val) {
+          loadedData[key] = loadedData[key].trim();
+        });
+        return loadedData
+      }).then((data) => {
+        console.log(data)
+        setWorks(data)
+      }).catch(err => console.log(err)) //To Notify!
+    },
+    [],
+  );
 
   return (
     <Router>
       <div className={classes.root}>
-        <CssBaseline/>
-        <AppBar {..._useToggle}/>
-        <Drawer{..._useToggle}/>
+        <CssBaseline />
+        <AppBar {..._useToggle} />
+        <Drawer{..._useToggle} />
 
-        <main className={classes.content}>
-          <div className={classes.toolbar}/>
-          <Suspense fallback={<Loading/>}>
-            <Switch>
-              {routes.map((route, key) => <Route key={key} exact {...route}/>)}
-            </Switch>
-          </Suspense>
-        </main>
+        <WorksContext.Provider value={works}>
+          <FavoritesContext.Provider value={{favorites, setFavorites}}>
+            <main className={classes.content}>
+              <div className={classes.toolbar} />
+              <Suspense fallback={<Loading />}>
+                <Switch>
+                  {routes.map((route, key) => <Route key={key} exact {...route} />)}
+                </Switch>
+              </Suspense>
+            </main>
+          </FavoritesContext.Provider>
+        </WorksContext.Provider>
       </div>
     </Router>
   )

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, useLayoutEffect } from 'react'
+import React, { useState, useEffect, Suspense, useContext } from 'react'
 import { Grid } from '@material-ui/core'
 
 import { Module, List, Setting } from './components'
@@ -8,8 +8,9 @@ import csvFileName from 'data/worklist.csv'
 // import { csv } from 'd3-request'
 import { dsv } from 'd3-fetch'
 import { Loading } from 'components'
-
+import { WorksContext, FavoritesContext } from '../App'
 import { sortBy, useToggle, useInput, useTitle } from 'utils'
+import { Favorite } from '@material-ui/icons';
 
 // csv(csvFileName, (error, data) => {
 //   if (error) {
@@ -55,25 +56,11 @@ function searchAndSortWorks(works, searchValue, sortValue) {
 function Trabalhos() {
 
   const [sortValue, setLSortValue] = useState('')
-  const [works, setWorks] = useState(null)
+  // const [works, setWorks] = useState(null)
   const { toggle, setToggle } = useToggle()
   const [searchValue, setSearchValue] = useInput()
-  useTitle('Trabalhos | PSE-2019');
-
-  useEffect(
-    () => {
-      dsv(';', csvFileName, (loadedData) => {
-        Object.keys(loadedData).map(function (key, val) {
-          loadedData[key] = loadedData[key].trim();
-        });
-        return loadedData
-      }).then( (data) => {
-        console.log(data)
-        setWorks(data)
-      }).catch( err => console.log(err)) //To Notify!
-    },
-    [],
-  );
+  useTitle('Trabalhos | PSE-2019')
+  const works = useContext(WorksContext);
 
   const props = {
     toggle,
@@ -103,14 +90,5 @@ function Trabalhos() {
     </>
   )
 }
-
-// {
-//   works.map((work, key) => (
-//     <Grid item key={key} {...layout}>
-//       {/* {toggle ? <List {...work} /> : <Module {...work}/>} */}
-//       <h3>{work.Title}</h3>
-//     </Grid>
-//   ))
-// }
 
 export default Trabalhos

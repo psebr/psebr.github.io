@@ -1,5 +1,6 @@
-import React, { useState, useEffect, Suspense, useLayoutEffect } from 'react'
+import React, { useState, useEffect, Suspense, useContext } from 'react'
 import { Grid } from '@material-ui/core'
+import { FavoritesContext } from '../App';
 
 import { Module, List, Setting } from './components'
 import favourite from 'data/favourite'
@@ -58,18 +59,21 @@ function Trabalhos() {
   const [works, setWorks] = useState(null)
   const { toggle, setToggle } = useToggle()
   const [searchValue, setSearchValue] = useInput()
+  const {favorites, setFavorites} = useContext(FavoritesContext);
+
+  console.log(favorites)
+
   useTitle('Favoritos | PSE-2019');
 
   return (
     <>
       <Grid container spacing={32} style={{ marginTop: '5px' }}>
-        {/* {worksToShow ? (worksToShow.map((work, key) => (
-          <Grid item key={key} {...layout} style={{ padding: '5px 5px' }}>
+        {favorites.lenth === 0 ? (favorites.map((work, key) => (
+          <Grid item key={key} style={{ padding: '5px 5px' }}>
             <List {...work} />
           </Grid>
-        ))) : <Loading></Loading>
-        } */}
-        Oi Favoritos!
+        ))) : <p style={{width: '100%', textAlign: 'center'}}>Nenhum favorito selecionado.</p>
+        }
       </Grid>
     </>
   )
