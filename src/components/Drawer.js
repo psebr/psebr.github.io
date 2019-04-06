@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { IconButton, Divider, List, Drawer, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import classNames from 'classnames'
+import imgPseRj from 'assets/PSE_RJ-1.png'
+
 import {
   HomeOutlined,
   ScheduleOutlined,
@@ -53,7 +55,7 @@ const menus = [
       children: <InfoOutlined />,
       label: 'Informações',
       route: '/infos'
-    }    
+    }
   ],
   // [
   //   {
@@ -105,7 +107,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: 48,
+    height: 80,
+  },
+  imgPseRj: {
+    height: 80,
   },
 }))
 
@@ -129,6 +134,7 @@ function DrawerChild ({toggle, setToggle}) {
       open={toggle}
     >
       <div className={classes.toolbar}>
+        <img src={imgPseRj} alt="PSE" className={classes.imgPseRj}/>
         {
           toggle && <IconButton aria-label="Close drawer" onClick={setToggle}>
             <ChevronLeft/>

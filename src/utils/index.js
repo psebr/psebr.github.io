@@ -55,7 +55,11 @@ export const countBy = (arr, fn) =>
 
 export const sortBy = (arr, compare) =>
   arr.map((item, index) => ({item, index}))
-    .sort((a, b) => compare(a.item, b.item) || a.index - b.index)
+    .sort((a, b) => {
+      const test1 = compare(a.item, b.item)
+      // const test2 = a.index - b.index
+      return test1 //|| test2
+    })
     .map(({item}) => item)
 
 export const renameKeys = (keysMap, obj) =>
