@@ -63,13 +63,6 @@ function Trabalhos() {
   useEffect(
     () => {
       dsv(';', csvFileName, (loadedData) => {
-        // return loadedData
-        // if (loadedData) {
-        //   console.log(' error', error)
-        // }
-        // console.log(' OK', loadedData)
-        // setWorks(loadedData)
-        // console.log('works', works)
         Object.keys(loadedData).map(function (key, val) {
           loadedData[key] = loadedData[key].trim();
         });
@@ -94,11 +87,6 @@ function Trabalhos() {
   let worksToShow = null
   if (works) {
     worksToShow = searchAndSortWorks(works, searchValue, sortValue)
-    // worksToShow = sortBy(works.filter(({ TITLE, AUTHOR }) => {
-    //   return TITLE.toLowerCase().includes(searchValue.toLowerCase()) || AUTHOR.toLowerCase().includes(searchValue.toLowerCase())
-    // }), (a, b) => {
-    //   return b[sortValue] > a[sortValue]
-    // })
   }
 
   return (
