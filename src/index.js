@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
+import amber from '@material-ui/core/colors/amber';
 
 import './index.css'
 import App from './page/App'
@@ -14,6 +15,7 @@ const theme = createMuiTheme({
   },
   palette: {
     type: 'light',
+    secondary: amber,
   },
 })
 

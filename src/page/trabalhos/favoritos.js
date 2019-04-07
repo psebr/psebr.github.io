@@ -35,41 +35,41 @@ const listLayout = {
   xl: 6
 }
 
-function searchAndSortWorks(works, searchValue, sortValue) {
-  const searchedList = works.filter(({ TITLE, AUTHOR, AXIS }) => {
-    return TITLE.toLowerCase().includes(
-      searchValue.toLowerCase()) ||
-      AUTHOR.toLowerCase().includes(searchValue.toLowerCase()) ||
-      AXIS.toLowerCase().includes(searchValue.toLowerCase())
-  })
+// function searchAndSortWorks(works, searchValue, sortValue) {
+//   const searchedList = works.filter(({ TITLE, AUTHOR, AXIS }) => {
+//     return TITLE.toLowerCase().includes(
+//       searchValue.toLowerCase()) ||
+//       AUTHOR.toLowerCase().includes(searchValue.toLowerCase()) ||
+//       AXIS.toLowerCase().includes(searchValue.toLowerCase())
+//   })
 
-  const sortedList = searchedList.sort(function (a, b) {
-    if (a[sortValue] < b[sortValue]) { return -1; }
-    if (a[sortValue] > b[sortValue]) { return 1; }
-    return 0;
-  })
+//   const sortedList = searchedList.sort(function (a, b) {
+//     if (a[sortValue] < b[sortValue]) { return -1; }
+//     if (a[sortValue] > b[sortValue]) { return 1; }
+//     return 0;
+//   })
 
-  const finalList = sortedList
-  return finalList
-}
+//   const finalList = sortedList
+//   return finalList
+// }
 
-function Trabalhos() {
+function Favoritos() {
 
-  const [sortValue, setLSortValue] = useState('')
-  const [works, setWorks] = useState(null)
-  const { toggle, setToggle } = useToggle()
-  const [searchValue, setSearchValue] = useInput()
+  // const [sortValue, setLSortValue] = useState('')
+  // const [works, setWorks] = useState(null)
+  // const { toggle, setToggle } = useToggle()
+  // const [searchValue, setSearchValue] = useInput()
   const {favorites, setFavorites} = useContext(FavoritesContext);
 
-  console.log(favorites)
+  console.log('/favoritos', favorites)
 
   useTitle('Favoritos | PSE-2019');
 
   return (
     <>
       <Grid container spacing={32} style={{ marginTop: '5px' }}>
-        {favorites.lenth === 0 ? (favorites.map((work, key) => (
-          <Grid item key={key} style={{ padding: '5px 5px' }}>
+        {favorites.length > 0 ? (favorites.map((work, key) => (
+          <Grid item key={key} {...listLayout} style={{ padding: '5px 5px' }}>
             <List {...work} />
           </Grid>
         ))) : <p style={{width: '100%', textAlign: 'center'}}>Nenhum favorito selecionado.</p>
@@ -79,4 +79,4 @@ function Trabalhos() {
   )
 }
 
-export default Trabalhos
+export default Favoritos
