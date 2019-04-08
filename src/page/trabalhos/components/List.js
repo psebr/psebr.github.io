@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { makeStyles, useTheme } from '@material-ui/styles'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 
-import { Card, CardContent, Typography, CardHeader } from '@material-ui/core'
+import { Card, CardContent, Typography, CardHeader, Tooltip } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -11,7 +11,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Link } from '@material-ui/icons'
 import LazyLoad from 'react-lazyload'
 import ImageZoom from 'react-medium-image-zoom'
-import { GradeOutlined, InsertChartOutlined, AttachmentOutlined } from '@material-ui/icons'
+import { Grade, InsertChartOutlined, AttachmentOutlined } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -103,6 +103,14 @@ function handleVisualizarClick(params) {
   console.log('Visualizando!')
 }
 
+function colorizedFavorite(item, favorites) {
+  if (!favorites) {
+    return 'inherit'
+  }
+  const filtered = favorites.filter(fav => fav.ID === item.ID)
+  return filtered.length > 0 ? 'secondary' : 'inherit'
+}
+
 const backGroundColorsArea = {
   'controle e instrumentação de processos': 'darkred',
   'integração': 'orange',
@@ -141,6 +149,16 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
   const theme = useTheme()
   const classes = useStyles()
 
+  // const handleFavoriteClick = () => {
+  //   setFavorited(!favorited)
+  //   const favorites = favoritesContext.favorites
+  //   const setFavorites = favoritesContext.setFavorites
+  //   console.log('Start favoritando!', favoritesContext)
+  //   const newFavorites = [...favorites, fullObjs]
+  //   // setFavorites(newFavorites)
+  //   console.log('Favoritado!', favorites)
+  // }
+
   console.log('List', ID)
   return (
     <Card className={classes.card}>
@@ -173,19 +191,28 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
             </section>
           </div>
             <div style={{ flexBasis: '10%', display: 'flex', flexDirection: 'column'}}>
-              <IconButton tooltip="Favoritar" style={{padding: 2}}
-                onClick={handleFavoriteClick}>
-                <GradeOutlined></GradeOutlined>
-              </IconButton>
-              <IconButton tooltip="Avaliar" style={{padding: 2}}
-                onClick={handleAvaliarClick}>
-                <InsertChartOutlined></InsertChartOutlined>
-              </IconButton>
-              <IconButton tooltip="Abrir Resumo" style={{padding: 2}}
-                href={ABSLINK}
-                onClick={handleVisualizarClick}>
-                <AttachmentOutlined></AttachmentOutlined>
-              </IconButton>
+              <Tooltip title="Favoritar" aria-label="Favoritar">
+                <IconButton tooltip="Favoritar" style={{ padding: 2 }}
+                  onClick={handleFavoriteClick}>
+                  <Grade
+                    // color={favorited === true ? 'secondary' : 'inherit'}
+                    >
+                  </Grade>
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Avaliar" aria-label="Avaliar">
+                <IconButton tooltip="Avaliar" style={{ padding: 2 }}
+                  onClick={handleAvaliarClick}>
+                  <InsertChartOutlined></InsertChartOutlined>
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Abrir Resumo" aria-label="Abrir Resumo">
+                <IconButton tooltip="Abrir Resumo" style={{ padding: 2 }}
+                  href={ABSLINK}
+                  onClick={handleVisualizarClick}>
+                  <AttachmentOutlined></AttachmentOutlined>
+                </IconButton>
+              </Tooltip>
           </div>
         </section>
 

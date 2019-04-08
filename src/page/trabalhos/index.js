@@ -94,7 +94,7 @@ function Trabalhos() {
       <Setting {...props} />
       <Grid container spacing={32} style={{ marginTop: '5px' }}>
         {worksToShow ? (worksToShow.map((work, key) => (
-          <Grid item key={key} {...layout} style={{padding: '5px 5px'}}>
+          <Grid item key={work.ID} {...layout} style={{padding: '5px 5px'}}>
             <List {...work}/>
           </Grid>
         ))) : <Loading></Loading>
@@ -103,14 +103,5 @@ function Trabalhos() {
     </>
   )
 }
-
-// {
-//   works.map((work, key) => (
-//     <Grid item key={key} {...layout}>
-//       {/* {toggle ? <List {...work} /> : <Module {...work}/>} */}
-//       <h3>{work.Title}</h3>
-//     </Grid>
-//   ))
-// }
 
 export default Trabalhos
