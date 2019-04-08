@@ -141,6 +141,7 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
   const theme = useTheme()
   const classes = useStyles()
 
+  console.log('List', ID)
   return (
     <Card className={classes.card}>
       <div className={classes.details}>
@@ -200,4 +201,11 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
   )
 }
 
-export default List
+function componentIsEqual(prevProps, nextProps) {
+  if (prevProps.ID === nextProps.ID) {
+    console.log('equal')
+    return true
+  }
+}
+
+export default React.memo(List, componentIsEqual)
