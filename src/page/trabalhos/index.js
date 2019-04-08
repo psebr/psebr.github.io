@@ -54,46 +54,30 @@ function searchAndSortWorks(works, searchValue, sortValue) {
 
 
 
-function Trabalhos({ favorites, setFavorites}) {
+function Trabalhos({ works, setWorks, handleFavoriteButton}) {
 
   const [sortValue, setLSortValue] = useState('')
-  const [works, setWorks] = useState(null)
+  // const [works, setWorks] = useState(null)
   const { toggle, setToggle } = useToggle()
   const [searchValue, setSearchValue] = useInput()
   useTitle('Trabalhos | PSE-2019');
 
-  function handleFavoriteButton(e, workClicked) {
-    // let clickedWork = workClicked.filter((work, idx) => work.ID === workClicked.ID)
-    setFavorites(favWorks => {
-      // let favWorksNew = favWorks.map(item => item)
-      // favWorksNew.push(workClicked)
-      // return favWorksNew
-      return [...favWorks, workClicked]
-    })
-    setWorks((works) => {
-      let worksNew = works.map(item => item)
-      const idxClickedWork = worksNew.map(item => item.ID).indexOf(workClicked.ID)
-      console.log('fav-handle', workClicked)
-      worksNew[idxClickedWork] = { ...workClicked, favorited: !workClicked.favorited }
-      return worksNew
-    })
-  }
-
-  useEffect(
-    () => {
-      dsv(';', csvFileName, (loadedData) => {
-        Object.keys(loadedData).map(function (key, val) {
-          loadedData[key] = loadedData[key].trim();
-        });
-        loadedData.favorited = false
-        return loadedData
-      }).then((data) => {
-        console.log(data)
-        setWorks(data)
-      }).catch(err => console.log(err)) //To Notify!
-    },
-    [],
-  );
+  // function handleFavoriteButton(e, workClicked) {
+  //   // let clickedWork = workClicked.filter((work, idx) => work.ID === workClicked.ID)
+  //   setFavorites(favWorks => {
+  //     // let favWorksNew = favWorks.map(item => item)
+  //     // favWorksNew.push(workClicked)
+  //     // return favWorksNew
+  //     return [...favWorks, workClicked]
+  //   })
+  //   setWorks((works) => {
+  //     let worksNew = works.map(item => item)
+  //     const idxClickedWork = worksNew.map(item => item.ID).indexOf(workClicked.ID)
+  //     console.log('fav-handle', workClicked)
+  //     worksNew[idxClickedWork] = { ...workClicked, favorited: !workClicked.favorited }
+  //     return worksNew
+  //   })
+  // }
 
   const props = {
     toggle,
@@ -130,9 +114,9 @@ function componentIsEqual(prevProps, nextProps) {
   //   console.log('equal')
   //   return true
   // } DANGER!
-  return true
+  // return true
 }
 
-export default React.memo(Trabalhos, componentIsEqual)
+// export default React.memo(Trabalhos, componentIsEqual)
 
-// export default Trabalhos
+export default Trabalhos

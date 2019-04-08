@@ -27,7 +27,7 @@ const listLayout = {
   xl: 6
 }
 
-function Favoritos({favorites, setFavorites}) {
+function Favoritos({ favorites, handleFavoriteButton}) {
   console.log('Favoritos', favorites)
   // const [sortValue, setLSortValue] = useState('')
   // const [works, setWorks] = useState(null)
@@ -39,8 +39,8 @@ function Favoritos({favorites, setFavorites}) {
     <>
       <Grid container spacing={32} style={{ marginTop: '5px' }} key="fdsfds">
         {favorites.length > 0 ? (favorites.map((work, key) => (
-          <Grid item key={key.ID} {...listLayout} style={{ padding: '5px 5px' }}>
-            <List {...work} />
+          <Grid item key={`${key}-${work.ID}`} {...listLayout} style={{ padding: '5px 5px' }}>
+            <List {...work} favorited={work.favorited} handleFavoriteButton={handleFavoriteButton} />
           </Grid>
         ))) : <p style={{ width: '100%', textAlign: 'center' }}>Nenhum favorito selecionado.</p>
         }

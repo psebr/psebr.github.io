@@ -88,6 +88,7 @@ function AppBarChild ({ toggle, setToggle}) {
             <Github fontSize="small"/>
           </a>
         </IconButton> */}
+        PSE - 2019
       </Toolbar>
     </AppBar>
   )
