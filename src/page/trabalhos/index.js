@@ -8,9 +8,8 @@ import csvFileName from 'data/worklist.csv'
 // import { csv } from 'd3-request'
 import { dsv } from 'd3-fetch'
 import { Loading } from 'components'
-import { WorksContext, FavoritesContext } from '../App'
-import { sortBy, useToggle, useInput, useTitle } from 'utils'
-import { Favorite } from '@material-ui/icons';
+
+import { useToggle, useInput, useTitle } from 'utils'
 
 // csv(csvFileName, (error, data) => {
 //   if (error) {
@@ -53,14 +52,37 @@ function searchAndSortWorks(works, searchValue, sortValue) {
   return finalList
 }
 
-function Trabalhos() {
+
+
+function Trabalhos({ works, setWorks, handleFavoriteButton}) {
 
   const [sortValue, setLSortValue] = useState('')
   // const [works, setWorks] = useState(null)
   const { toggle, setToggle } = useToggle()
   const [searchValue, setSearchValue] = useInput()
+<<<<<<< HEAD
   useTitle('Trabalhos | PSE-2019')
   const works = useContext(WorksContext);
+=======
+  useTitle('Trabalhos | PSE-2019');
+
+  // function handleFavoriteButton(e, workClicked) {
+  //   // let clickedWork = workClicked.filter((work, idx) => work.ID === workClicked.ID)
+  //   setFavorites(favWorks => {
+  //     // let favWorksNew = favWorks.map(item => item)
+  //     // favWorksNew.push(workClicked)
+  //     // return favWorksNew
+  //     return [...favWorks, workClicked]
+  //   })
+  //   setWorks((works) => {
+  //     let worksNew = works.map(item => item)
+  //     const idxClickedWork = worksNew.map(item => item.ID).indexOf(workClicked.ID)
+  //     console.log('fav-handle', workClicked)
+  //     worksNew[idxClickedWork] = { ...workClicked, favorited: !workClicked.favorited }
+  //     return worksNew
+  //   })
+  // }
+>>>>>>> 67136797b167c5819bf8a1c17d5f0674fda368dd
 
   const props = {
     toggle,
@@ -81,8 +103,9 @@ function Trabalhos() {
       <Setting {...props} />
       <Grid container spacing={32} style={{ marginTop: '5px' }}>
         {worksToShow ? (worksToShow.map((work, key) => (
-          <Grid item key={key} {...layout} style={{padding: '5px 5px'}}>
-            <List {...work}/>
+          <Grid item key={work.ID} {...layout} style={{ padding: '5px 5px' }}>
+            <List {...work}
+              favorited={work.favorited} handleFavoriteButton={handleFavoriteButton} />
           </Grid>
         ))) : <Loading></Loading>
         }
@@ -91,4 +114,17 @@ function Trabalhos() {
   )
 }
 
+<<<<<<< HEAD
+=======
+function componentIsEqual(prevProps, nextProps) {
+  // if (prevProps.ID === nextProps.ID) {
+  //   console.log('equal')
+  //   return true
+  // } DANGER!
+  // return true
+}
+
+// export default React.memo(Trabalhos, componentIsEqual)
+
+>>>>>>> 67136797b167c5819bf8a1c17d5f0674fda368dd
 export default Trabalhos

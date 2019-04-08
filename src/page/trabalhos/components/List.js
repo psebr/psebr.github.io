@@ -12,7 +12,6 @@ import { Link } from '@material-ui/icons'
 import LazyLoad from 'react-lazyload'
 import ImageZoom from 'react-medium-image-zoom'
 import { Grade, InsertChartOutlined, AttachmentOutlined } from '@material-ui/icons'
-import { FavoritesContext } from '../../App';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -142,24 +141,28 @@ const backGroundColorsArea = {
 //   summaryText: PropTypes.string.isRequired
 // }
 
-function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK }) {
+function List({ ID, TITLE, AUTHOR, TYPE, LOCATION,
+  DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK,
+  favorited, handleFavoriteButton }) {
   const theme = useTheme()
   const classes = useStyles()
-  const [favorited, setFavorited] = useState(false)
-  const favoritesContext = useContext(FavoritesContext);
-  const fullObjs = { ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK }
-
-  const handleFavoriteClick = () => {
-    setFavorited(!favorited)
-    const favorites = favoritesContext.favorites
-    const setFavorites = favoritesContext.setFavorites
-    console.log('Start favoritando!', favoritesContext)
-    const newFavorites = [...favorites, fullObjs]
-    // setFavorites(newFavorites)
-    console.log('Favoritado!', favorites)
+  const work = {
+    ID, TITLE, AUTHOR, TYPE, LOCATION,
+    DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK,
+    favorited
   }
 
-  console.log('favorited', favorited)
+  // const handleFavoriteClick = () => {
+  //   setFavorited(!favorited)
+  //   const favorites = favoritesContext.favorites
+  //   const setFavorites = favoritesContext.setFavorites
+  //   console.log('Start favoritando!', favoritesContext)
+  //   const newFavorites = [...favorites, fullObjs]
+  //   // setFavorites(newFavorites)
+  //   console.log('Favoritado!', favorites)
+  // }
+
+  console.log('List', ID)
   return (
     <Card className={classes.card}>
       <div className={classes.details}>
@@ -193,9 +196,10 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
             <div style={{ flexBasis: '10%', display: 'flex', flexDirection: 'column' }}>
               <Tooltip title="Favoritar" aria-label="Favoritar">
                 <IconButton tooltip="Favoritar" style={{ padding: 2 }}
-                  onClick={handleFavoriteClick}>
+                  onClick={(e) => handleFavoriteButton(e, work)}>
                   <Grade
-                    color={favorited === true ? 'secondary' : 'inherit'}>
+                    color={favorited === true ? 'secondary' : 'inherit'}
+                  >
                   </Grade>
                 </IconButton>
               </Tooltip>
@@ -227,4 +231,15 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
   )
 }
 
-export default List
+function componentIsEqual(prevProps, nextProps) {
+  if (prevProps.ID === nextProps.ID &&
+    prevProps.favorited === nextProps.favorited
+  ) {
+    // console.log(prevProps, nextProps, 'equal')
+    return true
+  }
+  return false
+}
+
+export default React.memo(List, componentIsEqual)
+// export default List
