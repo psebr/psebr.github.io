@@ -9,7 +9,7 @@ import csvFileName from 'data/worklist.csv'
 import { dsv } from 'd3-fetch'
 import { Loading } from 'components'
 
-import { sortBy, useToggle, useInput, useTitle } from 'utils'
+import { useToggle, useInput, useTitle } from 'utils'
 
 // csv(csvFileName, (error, data) => {
 //   if (error) {
@@ -52,7 +52,9 @@ function searchAndSortWorks(works, searchValue, sortValue) {
   return finalList
 }
 
-function Trabalhos() {
+
+
+function Trabalhos({ favorites, setFavorites}) {
 
   const [sortValue, setLSortValue] = useState('')
   const [works, setWorks] = useState(null)
@@ -60,17 +62,35 @@ function Trabalhos() {
   const [searchValue, setSearchValue] = useInput()
   useTitle('Trabalhos | PSE-2019');
 
+  function handleFavoriteButton(e, workClicked) {
+    // let clickedWork = workClicked.filter((work, idx) => work.ID === workClicked.ID)
+    setFavorites(favWorks => {
+      // let favWorksNew = favWorks.map(item => item)
+      // favWorksNew.push(workClicked)
+      // return favWorksNew
+      return [...favWorks, workClicked]
+    })
+    setWorks((works) => {
+      let worksNew = works.map(item => item)
+      const idxClickedWork = worksNew.map(item => item.ID).indexOf(workClicked.ID)
+      console.log('fav-handle', workClicked)
+      worksNew[idxClickedWork] = { ...workClicked, favorited: !workClicked.favorited }
+      return worksNew
+    })
+  }
+
   useEffect(
     () => {
       dsv(';', csvFileName, (loadedData) => {
         Object.keys(loadedData).map(function (key, val) {
           loadedData[key] = loadedData[key].trim();
         });
+        loadedData.favorited = false
         return loadedData
-      }).then( (data) => {
+      }).then((data) => {
         console.log(data)
         setWorks(data)
-      }).catch( err => console.log(err)) //To Notify!
+      }).catch(err => console.log(err)) //To Notify!
     },
     [],
   );
@@ -94,8 +114,9 @@ function Trabalhos() {
       <Setting {...props} />
       <Grid container spacing={32} style={{ marginTop: '5px' }}>
         {worksToShow ? (worksToShow.map((work, key) => (
-          <Grid item key={work.ID} {...layout} style={{padding: '5px 5px'}}>
-            <List {...work}/>
+          <Grid item key={work.ID} {...layout} style={{ padding: '5px 5px' }}>
+            <List {...work}
+              favorited={work.favorited} handleFavoriteButton={handleFavoriteButton} />
           </Grid>
         ))) : <Loading></Loading>
         }
@@ -104,4 +125,14 @@ function Trabalhos() {
   )
 }
 
-export default Trabalhos
+function componentIsEqual(prevProps, nextProps) {
+  // if (prevProps.ID === nextProps.ID) {
+  //   console.log('equal')
+  //   return true
+  // } DANGER!
+  return true
+}
+
+export default React.memo(Trabalhos, componentIsEqual)
+
+// export default Trabalhos

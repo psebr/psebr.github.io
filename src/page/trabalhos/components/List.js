@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardHeader: {
     fontSize: '0.7rem',
-    padding: theme.spacing.unit/2,
+    padding: theme.spacing.unit / 2,
     width: '100%',
     color: 'white',
     fontWeight: 600,
@@ -145,9 +145,16 @@ const backGroundColorsArea = {
 //   summaryText: PropTypes.string.isRequired
 // }
 
-function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK }) {
+function List({ ID, TITLE, AUTHOR, TYPE, LOCATION,
+  DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK,
+  favorited, handleFavoriteButton }) {
   const theme = useTheme()
   const classes = useStyles()
+  const work = {
+    ID, TITLE, AUTHOR, TYPE, LOCATION,
+    DATE, ABSLINK, FORMLINK, AXIS, PAPERLINK,
+    favorited
+  }
 
   // const handleFavoriteClick = () => {
   //   setFavorited(!favorited)
@@ -163,40 +170,40 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
   return (
     <Card className={classes.card}>
       <div className={classes.details}>
-        <section className={classes.cardHeader} style={{ backgroundColor: backGroundColorsArea[AXIS.toLowerCase()]}}>
+        <section className={classes.cardHeader} style={{ backgroundColor: backGroundColorsArea[AXIS.toLowerCase()] }}>
           {AXIS}
         </section>
 
         <CardContent className={classes.content}>
-          <section style={{ display: 'flex'}}>
-          <div style={{flexBasis: '90%'}}>
-            <Typography variant="caption" className={classes.bold}>
+          <section style={{ display: 'flex' }}>
+            <div style={{ flexBasis: '90%' }}>
+              <Typography variant="caption" className={classes.bold}>
                 {TITLE}
-            </Typography>
-            <Typography variant="body2">
-              {AUTHOR}
-            </Typography>
-            <section className={classes.smallInfos}>
-              <Typography variant="caption" color="textSecondary" className={classes.infosItens}>
-                ID: {ID}
               </Typography>
-              <Typography variant="caption" color="textSecondary" className={classes.infosItens}>
-                Tipo: {TYPE}
+              <Typography variant="body2">
+                {AUTHOR}
               </Typography>
-            </section>
-            <section className={classes.summary}>
-              <Typography variant="caption" color="textSecondary" className={classes.infosItens}>
+              <section className={classes.smallInfos}>
+                <Typography variant="caption" color="textSecondary" className={classes.infosItens}>
+                  ID: {ID}
+                </Typography>
+                <Typography variant="caption" color="textSecondary" className={classes.infosItens}>
+                  Tipo: {TYPE}
+                </Typography>
+              </section>
+              <section className={classes.summary}>
+                <Typography variant="caption" color="textSecondary" className={classes.infosItens}>
                   Local: {LOCATION}
-              </Typography>
-            </section>
-          </div>
-            <div style={{ flexBasis: '10%', display: 'flex', flexDirection: 'column'}}>
+                </Typography>
+              </section>
+            </div>
+            <div style={{ flexBasis: '10%', display: 'flex', flexDirection: 'column' }}>
               <Tooltip title="Favoritar" aria-label="Favoritar">
                 <IconButton tooltip="Favoritar" style={{ padding: 2 }}
-                  onClick={handleFavoriteClick}>
+                  onClick={(e) => handleFavoriteButton(e, work)}>
                   <Grade
-                    // color={favorited === true ? 'secondary' : 'inherit'}
-                    >
+                    color={favorited === true ? 'secondary' : 'inherit'}
+                  >
                   </Grade>
                 </IconButton>
               </Tooltip>
@@ -213,8 +220,8 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
                   <AttachmentOutlined></AttachmentOutlined>
                 </IconButton>
               </Tooltip>
-          </div>
-        </section>
+            </div>
+          </section>
 
 
         </CardContent>
@@ -229,10 +236,14 @@ function List({ ID, TITLE, AUTHOR, TYPE, LOCATION, DATE, ABSLINK, FORMLINK, AXIS
 }
 
 function componentIsEqual(prevProps, nextProps) {
-  if (prevProps.ID === nextProps.ID) {
-    console.log('equal')
+  if (prevProps.ID === nextProps.ID &&
+    prevProps.favorited === nextProps.favorited
+  ) {
+    // console.log(prevProps, nextProps, 'equal')
     return true
   }
+  return false
 }
 
 export default React.memo(List, componentIsEqual)
+// export default List
