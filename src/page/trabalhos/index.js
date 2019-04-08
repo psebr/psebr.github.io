@@ -68,7 +68,6 @@ function Trabalhos({ works, setWorks, handleFavoriteButton }) {
           }
         </Grid>
       </Suspense>
-
     </>
   )
 }
