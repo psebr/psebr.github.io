@@ -1,30 +1,10 @@
-import React, { useState, useEffect, Suspense, useContext } from 'react'
+import React, { useState, Suspense } from 'react'
 import { Grid } from '@material-ui/core'
 
-import { Module, List, Setting } from './components'
-import favourite from 'data/favourite'
-import csvFileName from 'data/worklist.csv'
-// import Papa from 'papaparse'
-// import { csv } from 'd3-request'
-import { dsv } from 'd3-fetch'
+import { List, Setting } from './components'
 import { Loading } from 'components'
 
 import { useToggle, useInput, useTitle } from 'utils'
-
-// csv(csvFileName, (error, data) => {
-//   if (error) {
-//     console.log(' error', error)
-//   }
-//   console.log(' OK', data)
-// })
-
-const moduleLayout = {
-  xs: 12,
-  sm: 6,
-  md: 4,
-  lg: 3,
-  xl: 3
-}
 
 const listLayout = {
   xs: 12,
@@ -54,30 +34,12 @@ function searchAndSortWorks(works, searchValue, sortValue) {
 
 
 
-function Trabalhos({ works, setWorks, handleFavoriteButton}) {
+function Trabalhos({ works, setWorks, handleFavoriteButton }) {
 
   const [sortValue, setLSortValue] = useState('')
-  // const [works, setWorks] = useState(null)
   const { toggle, setToggle } = useToggle()
   const [searchValue, setSearchValue] = useInput()
   useTitle('Trabalhos | PSE-2019');
-
-  // function handleFavoriteButton(e, workClicked) {
-  //   // let clickedWork = workClicked.filter((work, idx) => work.ID === workClicked.ID)
-  //   setFavorites(favWorks => {
-  //     // let favWorksNew = favWorks.map(item => item)
-  //     // favWorksNew.push(workClicked)
-  //     // return favWorksNew
-  //     return [...favWorks, workClicked]
-  //   })
-  //   setWorks((works) => {
-  //     let worksNew = works.map(item => item)
-  //     const idxClickedWork = worksNew.map(item => item.ID).indexOf(workClicked.ID)
-  //     console.log('fav-handle', workClicked)
-  //     worksNew[idxClickedWork] = { ...workClicked, favorited: !workClicked.favorited }
-  //     return worksNew
-  //   })
-  // }
 
   const props = {
     toggle,
@@ -87,7 +49,6 @@ function Trabalhos({ works, setWorks, handleFavoriteButton}) {
     setLSortValue
   }
 
-  const layout = toggle ? listLayout : moduleLayout
   let worksToShow = null
   if (works) {
     worksToShow = searchAndSortWorks(works, searchValue, sortValue)
@@ -96,26 +57,29 @@ function Trabalhos({ works, setWorks, handleFavoriteButton}) {
   return (
     <>
       <Setting {...props} />
-      <Grid container spacing={32} style={{ marginTop: '5px' }}>
-        {worksToShow ? (worksToShow.map((work, key) => (
-          <Grid item key={work.ID} {...layout} style={{ padding: '5px 5px' }}>
-            <List {...work}
-              favorited={work.favorited} handleFavoriteButton={handleFavoriteButton} />
-          </Grid>
-        ))) : <Loading></Loading>
-        }
-      </Grid>
+      <Suspense fallback={<Loading />}>
+        <Grid container spacing={32} justify="center" style={{ marginTop: '5px' }}>
+          {worksToShow ? (worksToShow.map((work, key) => (
+            <Grid item key={work.ID} {...listLayout} style={{ padding: '5px 5px' }}>
+              <List {...work}
+                favorited={work.favorited} handleFavoriteButton={handleFavoriteButton} />
+            </Grid>
+          ))) : <Loading></Loading>
+          }
+        </Grid>
+      </Suspense>
+
     </>
   )
 }
 
-function componentIsEqual(prevProps, nextProps) {
-  // if (prevProps.ID === nextProps.ID) {
-  //   console.log('equal')
-  //   return true
-  // } DANGER!
-  // return true
-}
+// function componentIsEqual(prevProps, nextProps) {
+//   // if (prevProps.ID === nextProps.ID) {
+//   //   console.log('equal')
+//   //   return true
+//   // } DANGER!
+//   // return true
+// }
 
 // export default React.memo(Trabalhos, componentIsEqual)
 

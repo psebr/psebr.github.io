@@ -1,8 +1,7 @@
-import React, { lazy, Suspense } from 'react'
-import { Grid, Card, Typography } from '@material-ui/core'
+import React from 'react'
+import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import logo from 'assets/cropped-PSEBR2019-e1553045992398.png'
-import { Loading } from 'components'
 import { useTitle } from 'utils'
 
 // const Components = [lazy(() => import('./components/Bar')), lazy(() => import('./components/Map'))]
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 function Inicial() {
 	const classes = useStyles()
-	useTitle('Página Inicial | PSE-2019');
+	useTitle('PSE-2019 | Página Inicial');
 
 	return (
 		<div className={classes.container}>
@@ -40,9 +39,6 @@ function Inicial() {
       <Typography variant="h5" className={classes.title}>
 				I Congresso Brasileiro em Engenharia de Sistemas em Processos
 			</Typography>
-			{/* <h1>
-				PSE 2019
-			</h1> */}
 			<h4>
 				Consulta e Avaliação de Trabalhos
 			</h4>

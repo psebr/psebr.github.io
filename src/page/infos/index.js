@@ -1,20 +1,10 @@
-import React, { lazy, Suspense } from 'react'
-import { Grid, Card, Typography } from '@material-ui/core'
+import React from 'react'
+import { Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import realizacaoImg from '../../assets/realizacao.png'
+import partrociniosImg from '../../assets/Patrocinios-300x136.png'
 
-// import PDFViewer from '../trabalhos/components/PDFViewer';
-// import { Document, Page, setOptions  } from "react-pdf";
-// import { Document } from 'react-pdf/dist/entry.webpack';
-// import { pdfjs } from 'react-pdf';
-import { Document, Page } from 'react-pdf';
-
-// import { Document, Page } from 'react-pdf/dist/entry.webpack'
-import { Loading } from 'components'
 import { useTitle } from 'utils'
-
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
-// const Components = [lazy(() => import('./components/Bar')), lazy(() => import('./components/Map'))]
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -28,7 +18,14 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  }
+  },
+  pdfWrapper: {
+    width: '95%',
+    height: '96vh',
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
 }))
 
 function Inicial() {
@@ -37,33 +34,27 @@ function Inicial() {
 
   return (
     <div className={classes.container}>
-      <h1>
-        Informações sobre o PSE 2019
-			</h1>
-      <Typography component="p">
-        Fique por dentro
-			</Typography>
-      <Typography component="p">
-        Acesse o Site do PSE: http://www.ufrgs.br/psebr/
-			</Typography>
+      <h4>
+        Encontrou algum erro ?
+			</h4>
+      <Button variant="contained" className={classes.button}
+        target='_blank'
+        rel="noreferrer"
+        href="mailto: caiocuritiba@gmail.com?subject=Reportagem de Erro Web-App PSE2019"
+      >Avise-nos!</Button>
 
-      {/* <div style={{ width: 600 }}>
-        <Document
-          file="https://goo.gl/DLsRGQ"
-          // onLoadSuccess={this.onDocumentLoadSuccess}
-        >
-          <Page pageNumber={1} width={600} />
-        </Document>
-      </div> */}
-      {/* <a href="https://goo.gl/DLsRGQ">LINK!</a> */}
+      <h5>
+        Realização:
+      </h5>
 
-      {/* IF DECIDED TO OPEN DRIVE INSIDE APP:
-        - GET FULL LINK
-        - USE /preview instead of /view
-      */}
-      <iframe src="https://drive.google.com/file/d/1QmKMcZ4J_CmNRvJZtzCEJpQLU4pkE-Ho/preview" title="title">
-        Presss me: <a href="https://www.youtube.com/embed/8WkuChVeL0s">Download PDF</a>
-      </iframe>
+      <img src={realizacaoImg} alt="Realizacao" width="200px"/>
+
+      <h5>
+        Patrocínios:
+      </h5>
+
+      <img src={partrociniosImg} alt="Realizacao" width="200px"/>
+
     </div>
   )
 }

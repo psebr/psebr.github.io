@@ -11,13 +11,8 @@ import {
   HomeOutlined,
   ScheduleOutlined,
   GradeOutlined,
-  InsertChartOutlined,
-  QuestionAnswerOutlined,
   InfoOutlined,
   ChevronLeft,
-  Movie,
-  BarChart,
-  Comment,
 } from '@material-ui/icons'
 
 const QrCodeIcon = () => (
@@ -47,7 +42,7 @@ const menus = [
     {
       children: <ScheduleOutlined/>,
       label: 'Programação',
-      route: '/statistics'
+      route: '/programacao'
     },
     {
       // children: svgQrCode,
@@ -71,13 +66,6 @@ const menus = [
       route: '/infos'
     }
   ],
-  // [
-  //   {
-  //     children: <Comment/>,
-  //     label: 'Comment',
-  //     route: '/comment'
-  //   }
-  // ]
 ]
 
 const Menus = ({menus, toggle}) => (

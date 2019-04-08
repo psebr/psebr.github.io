@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
-import { makeStyles } from '@material-ui/styles'
+// import { makeStyles } from '@material-ui/styles'
 import QrReader from 'react-qr-reader'
 // import classes from '*.module.sass';
- 
-const useStyles = makeStyles(theme => ({
-  card: {
-    position: 'relative',
-    height: 512,
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: (theme.palette.type === 'dark') ? '#333' : '#fff',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  item: {
-    flexBasis: '90%'
-  }  
-}))
+
+// const useStyles = makeStyles(theme => ({
+//   card: {
+//     position: 'relative',
+//     height: 512,
+//     display: 'flex',
+//     justifyContent: 'center',
+//     backgroundColor: (theme.palette.type === 'dark') ? '#333' : '#fff',
+//   },
+//   container: {
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'center',
+//   },
+//   item: {
+//     flexBasis: '90%'
+//   }
+// }))
 
 const classesNameContainer = {
   display: 'flex',
@@ -31,19 +31,33 @@ class QrCodeReader extends Component {
   state = {
     result: 'No result'
   }
- 
+
+  validateQrData = data => { //Add more logic
+    if (data.includes('https://')){
+      return true
+    }
+    return false
+  }
+
   handleScan = data => {
     if (data) {
       this.setState({
         result: data
       })
     }
+    if (!this.validateQrData(data)) {
+      return
+    }
+    window.open(
+      'https://support.wwf.org.uk/earth_hour/index.php?type=individual',
+      '_blank' // <- This is what makes it open in a new window.
+    );
   }
   // handleError = err => {
 	// console.error(err)
 	//   this.setState({
 	// 	  result: 'Erro durante identificação do dispositivo.'
-	//   })	
+	//   })
   // }
   render() {
     // const classes = useStyles()
@@ -61,4 +75,3 @@ class QrCodeReader extends Component {
   }
 }
 export default QrCodeReader
- 

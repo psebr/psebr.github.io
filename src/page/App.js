@@ -39,30 +39,13 @@ const routes = [
     path: '/avaliar-trabalho',
     render: withRouter(lazy(() => import('./avaliar-trabalho')))
   },
-  // {
-  //   path: '/trabalhos',
-  //   render: withRouter(lazy(() => import('./trabalhos')))
-  // },
-  // {
-  //   path: '/favoritos',
-  //   // render: withRouter(lazy(() => import('./trabalhos/favoritos')))
-  //   render: (props) => <Favoritos {...props}/>
-  // },
+  {
+    path: '/programacao',
+    render: withRouter(lazy(() => import('./programacao')))
+  },
   {
     path: '/infos',
     render: withRouter(lazy(() => import('./infos')))
-  },
-  {
-    path: '/home',
-    render: withRouter(lazy(() => import('./home')))
-  },
-  {
-    path: '/statistics',
-    render: withRouter(lazy(() => import('./statistics')))
-  },
-  {
-    path: '/comment',
-    render: withRouter(lazy(() => import('./comment')))
   },
   {
     path: '(.*)',
@@ -86,18 +69,17 @@ function App() {
   const classes = useStyles()
   const _useToggle = useToggle()
   const [works, setWorks] = useState(null)
-  // const [favorites, setFavorites] = useState([])
   const [favorites, setFavorites] = useStateWithLocalStorage(
     'favoritesWorksPse2019'
   );
 
   useEffect(() => {
-    console.log('effect fav!')
+    // console.log('effect fav!')
     localStorage.setItem('favoritesWorksPse2019', JSON.stringify(favorites));
   });
 
   if (favoritesInitializedFromLocalStorage && works) {
-    console.log('fvInLS')
+    // console.log('fvInLS')
 
     if (favorites.length > 0) {
       setWorks((works) => {
@@ -113,7 +95,6 @@ function App() {
   }
 
 function handleFavoriteButton(e, workClicked) {
-  // let clickedWork = workClicked.filter((work, idx) => work.ID === workClicked.ID)
   setFavorites(favWorks => {
     const idxMatch = favWorks.findIndex(item => item.ID === workClicked.ID)
     if (idxMatch > -1) {
@@ -125,15 +106,9 @@ function handleFavoriteButton(e, workClicked) {
   setWorks((works) => {
     let worksNew = works.map(item => item)
     const idxClickedWork = worksNew.map(item => item.ID).indexOf(workClicked.ID)
-    console.log('fav-handle', workClicked)
+    // console.log('fav-handle', workClicked)
     worksNew[idxClickedWork] = { ...workClicked, favorited: !workClicked.favorited }
     return worksNew
-    // let worksNew = [...works]
-    // for (let i = 0; i < favorites.length; i++) {
-    //   const idxFavorited = works.findIndex(item => item.ID === favorites[i].ID)
-    //   worksNew[idxFavorited] = { ...worksNew[idxFavorited], favorited: true }
-    // }
-    // return worksNew
   })
 }
 
@@ -142,11 +117,12 @@ useEffect(
     dsv(';', csvFileName, (loadedData) => {
       Object.keys(loadedData).map(function (key, val) {
         loadedData[key] = loadedData[key].trim();
+        return 0
       });
       loadedData.favorited = false
       return loadedData
     }).then((data) => {
-      console.log('data here', data)
+      // console.log('data here', data)
       setWorks(data)
     }).catch(err => console.log(err)) //To Notify!
   },

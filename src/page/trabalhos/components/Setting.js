@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { fade } from '@material-ui/core/styles/colorManipulator'
-import { ExpandMore, Search, ViewList, ViewModule, Sort } from '@material-ui/icons'
+import { ExpandMore, Search, Sort } from '@material-ui/icons'
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -95,9 +95,9 @@ function Setting ({toggle, setToggle, searchValue, setSearchValue, setLSortValue
   const [target, {setTarget, freeTarget}] = useTarget()
 
   function handleItemClick (event) {
-    console.log(event)
-    console.log(event.currentTarget.textContent)
-    console.log(sorts[event.currentTarget.textContent])
+    // console.log(event)
+    // console.log(event.currentTarget.textContent)
+    // console.log(sorts[event.currentTarget.textContent])
     setLSortValue(sorts[event.currentTarget.textContent])
     freeTarget()
   }
