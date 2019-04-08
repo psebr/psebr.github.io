@@ -130,7 +130,7 @@ useEffect(
 );
 
 return (
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar {..._useToggle} />
