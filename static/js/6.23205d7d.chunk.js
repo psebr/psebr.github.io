@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{5626:function(a,e,r){"use strict";r.r(e);var o=r(0),n=r.n(o),t=r(33),i=r(107),c=r(26);e.default=function(){return Object(c.c)("Avaliar Trabalho| PSE-2019"),n.a.createElement("div",null,n.a.createElement(t.d,{handleError:function(a){console.error("Avaliacao",a),Object(i.b)({message:"Erro na identifica\xe7\xe3o do dispositivo. Voc\xea pode avaliar trabalhos em /trabalhos",variant:"error"})}}),n.a.createElement(i.a,null))}}}]);
-//# sourceMappingURL=6.23205d7d.chunk.js.map
