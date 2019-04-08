@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/pse2019/static/media/worklist.d329b711.csv"
   },
   {
-    "revision": "c33d06bcf39a65f0614b",
+    "revision": "de06eac844ecf30d7608",
     "url": "/pse2019/static/css/main.46b705cf.chunk.css"
   },
   {
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/pse2019/static/js/7.6dfd52dc.chunk.js"
   },
   {
-    "revision": "c33d06bcf39a65f0614b",
-    "url": "/pse2019/static/js/main.e19225dd.chunk.js"
+    "revision": "de06eac844ecf30d7608",
+    "url": "/pse2019/static/js/main.324b862f.chunk.js"
   },
   {
     "revision": "b3f9e8e8d1226de3eff8a069f5a6807d",
@@ -68,7 +68,7 @@ self.__precacheManifest = [
     "url": "/pse2019/static/media/Patrocinios-300x136.fa628580.png"
   },
   {
-    "revision": "06277a75487370cad869b3a807d04182",
+    "revision": "68b741228e14bb31a477b53363549f6d",
     "url": "/pse2019/index.html"
   }
 ];
