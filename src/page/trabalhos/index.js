@@ -60,10 +60,6 @@ function Trabalhos({ works, setWorks, handleFavoriteButton}) {
   // const [works, setWorks] = useState(null)
   const { toggle, setToggle } = useToggle()
   const [searchValue, setSearchValue] = useInput()
-<<<<<<< HEAD
-  useTitle('Trabalhos | PSE-2019')
-  const works = useContext(WorksContext);
-=======
   useTitle('Trabalhos | PSE-2019');
 
   // function handleFavoriteButton(e, workClicked) {
@@ -82,7 +78,6 @@ function Trabalhos({ works, setWorks, handleFavoriteButton}) {
   //     return worksNew
   //   })
   // }
->>>>>>> 67136797b167c5819bf8a1c17d5f0674fda368dd
 
   const props = {
     toggle,
@@ -114,8 +109,6 @@ function Trabalhos({ works, setWorks, handleFavoriteButton}) {
   )
 }
 
-<<<<<<< HEAD
-=======
 function componentIsEqual(prevProps, nextProps) {
   // if (prevProps.ID === nextProps.ID) {
   //   console.log('equal')
@@ -126,5 +119,4 @@ function componentIsEqual(prevProps, nextProps) {
 
 // export default React.memo(Trabalhos, componentIsEqual)
 
->>>>>>> 67136797b167c5819bf8a1c17d5f0674fda368dd
 export default Trabalhos
