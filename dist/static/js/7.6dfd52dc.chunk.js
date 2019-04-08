@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{5629:function(n,a,e){"use strict";e.r(a);var t=e(0),o=e.n(t),c=e(5);a.default=function(){return o.a.createElement(c.x,{component:"h6",variant:"h6"},"P\xe1gina n\xe3o encontrada!")}}}]);
+//# sourceMappingURL=7.6dfd52dc.chunk.js.map
