@@ -106,13 +106,8 @@ function App() {
           const idxFavorited = works.findIndex(item => item.ID === favorites[i].ID)
           worksNew[idxFavorited] = { ...worksNew[idxFavorited], favorited: true }
         }
+        return worksNew
       })
-        // let worksNew = [...works]
-        // for (let i = 0; i < favorites.length; i++) {
-        //   const idxFavorited = works.findIndex(item => item.ID === favorites[i].ID)
-        //   worksNew[idxFavorited] = { ...worksNew[idxFavorited], favorited: true }
-        // }
-        // return worksNew
     }
     favoritesInitializedFromLocalStorage = false
   }
