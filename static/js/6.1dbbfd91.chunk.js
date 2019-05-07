@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{5624:function(e,n,r){"use strict";r.r(n);var a=r(0),t=r.n(a),c=r(33),o=r(47),i=r(26);n.default=function(){return Object(i.c)("Rate Papers| PSE-2019"),t.a.createElement("div",null,t.a.createElement(c.d,{handleError:function(e){console.error("Rate Papers",e),Object(o.b)({message:"Error in device identification. You can rate in /works",variant:"error"})}}),t.a.createElement(o.a,null))}}}]);
-//# sourceMappingURL=6.1dbbfd91.chunk.js.map
