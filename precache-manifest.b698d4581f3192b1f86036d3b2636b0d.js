@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/pse2019/static/media/worklist.d329b711.csv"
   },
   {
-    "revision": "dfcf9efa875be734f3fc",
+    "revision": "31ee0d8217d5503304b1",
     "url": "/pse2019/static/css/main.12bf7e33.chunk.css"
   },
   {
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/pse2019/static/js/7.5ec9535c.chunk.js"
   },
   {
-    "revision": "dfcf9efa875be734f3fc",
-    "url": "/pse2019/static/js/main.3579a92b.chunk.js"
+    "revision": "31ee0d8217d5503304b1",
+    "url": "/pse2019/static/js/main.ba044b05.chunk.js"
   },
   {
     "revision": "b3f9e8e8d1226de3eff8a069f5a6807d",
@@ -72,7 +72,7 @@ self.__precacheManifest = [
     "url": "/pse2019/static/media/sponsors2.65bca124.png"
   },
   {
-    "revision": "fdadf843cbedc09b96c68e641e47d009",
+    "revision": "08d9518150e732f41385f2475f6163fa",
     "url": "/pse2019/index.html"
   }
 ];
