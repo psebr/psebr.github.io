@@ -72,7 +72,7 @@ self.__precacheManifest = [
     "url": "/pse2019/static/media/sponsors2.65bca124.png"
   },
   {
-    "revision": "31ec1f2f357f5b38a5ea3be539c09534",
+    "revision": "2e968cce86fe8ff9ec1657915fae9ad2",
     "url": "/pse2019/index.html"
   }
 ];
